@@ -1,8 +1,6 @@
 package com.demo.authen.controllers;
-import com.demo.authen.auth.KeycloakProvider;
 import com.demo.authen.model.User;
 import com.demo.authen.repositories.UserRepository;
-import com.demo.authen.services.KeyCloakService;
 import com.demo.authen.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,9 +19,6 @@ public class UserController {
     private UserRepository userRepo;
     private UserService userService;
 
-    private final KeyCloakService kcService;
-
-    private final KeycloakProvider kcProvider;
 
     @GetMapping("/{username}")
     public ResponseEntity<User> findByUserName(@PathVariable String username) {
@@ -42,6 +37,8 @@ public class UserController {
         List<User> users = userRepo.findAll();
         return users;
     }
+
+
 
 
 

@@ -1,5 +1,4 @@
-package com.demo.authen.auth;
-
+package com.demo.authen.config;
 
 
 import com.mashape.unirest.http.JsonNode;
@@ -16,14 +15,12 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class KeycloakProvider {
 
-    @Value("http://localhost:8080/auth/")
+    @Value("${keycloak.auth-server-url}")
     public String serverURL;
-    @Value("realm_01")
+    @Value("${keycloak.realm}")
     public String realm;
-    @Value("myclient")
+    @Value("${keycloak.resource}")
     public String clientID;
-    @Value("")
-    public String clientSecret;
 
     private static Keycloak keycloak = null;
 
@@ -37,7 +34,6 @@ public class KeycloakProvider {
                     .realm(realm)
                     .serverUrl(serverURL)
                     .clientId(clientID)
-                    .clientSecret(clientSecret)
                     .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                     .build();
         }
@@ -50,7 +46,6 @@ public class KeycloakProvider {
                 .realm(realm) //
                 .serverUrl(serverURL)//
                 .clientId(clientID) //
-                .clientSecret(clientSecret) //
                 .username(username) //
                 .password(password);
     }
@@ -60,7 +55,6 @@ public class KeycloakProvider {
         return Unirest.post(url)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .field("client_id", clientID)
-                .field("client_secret", clientSecret)
                 .field("refresh_token", refreshToken)
                 .field("grant_type", "refresh_token")
                 .asJson().getBody();

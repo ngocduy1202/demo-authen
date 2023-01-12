@@ -1,6 +1,6 @@
 package com.demo.authen.controllers;
 
-import com.demo.authen.auth.KeycloakProvider;
+import com.demo.authen.config.KeycloakProvider;
 import com.demo.authen.dto.CreateUserRequest;
 import com.demo.authen.dto.LoginRequest;
 import com.demo.authen.services.KeyCloakService;
@@ -20,7 +20,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
 @RestController
-@RequestMapping("/api/v1/login")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {

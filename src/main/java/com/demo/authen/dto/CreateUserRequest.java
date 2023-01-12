@@ -9,18 +9,18 @@ import lombok.*;
 @NoArgsConstructor
 public class CreateUserRequest {
 
-    @JsonProperty
+    @JsonProperty("username")
     private String username;
 
-    @JsonProperty
+    @JsonProperty("password")
     private String password;
 
-    @JsonProperty
+    @JsonProperty("email")
     private String email;
 
-    @JsonProperty
+    @JsonProperty("first_name")
     private String firstName;
 
-    @JsonProperty
+    @JsonProperty("last_name")
     private String lastName;
 }
